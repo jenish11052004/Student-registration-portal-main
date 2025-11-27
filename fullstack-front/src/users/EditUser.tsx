@@ -37,8 +37,8 @@ export default function EditUser() {
     const fetchData = async () => {
       try {
         const [domainsRes, studentRes] = await Promise.all([
-          axios.get('http://localhost:8080/api/domains'),
-          axios.get(`http://localhost:8080/api/students/${id}`),
+          axios.get('http://localhost:8080/api/domains', { withCredentials: true }),
+          axios.get(`http://localhost:8080/api/students/${id}`, { withCredentials: true }),
         ]);
         setDomains(domainsRes.data as Domain[]);
         const data = studentRes.data as Student;
@@ -141,7 +141,7 @@ export default function EditUser() {
 
     try {
       setSubmitting(true);
-      await axios.put(`http://localhost:8080/api/students/${id}`, payload);
+      await axios.put(`http://localhost:8080/api/students/${id}`, payload, { withCredentials: true });
       navigate('/home');
     } catch (error: any) {
       console.error('Failed to update student', error);

@@ -18,7 +18,7 @@ export default function Home() {
   const loadStudents = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get<Student[]>('http://localhost:8080/api/students');
+      const { data } = await axios.get<Student[]>('http://localhost:8080/api/students', { withCredentials: true });
       setStudents(data);
       setError(null);
     } catch (err) {
@@ -36,7 +36,7 @@ export default function Home() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:8080/api/students/${studentId}`);
+      await axios.delete(`http://localhost:8080/api/students/${studentId}`, { withCredentials: true });
       setStudents((prev) => prev.filter((student) => student.id !== studentId));
     } catch (err) {
       console.error('Unable to delete student', err);

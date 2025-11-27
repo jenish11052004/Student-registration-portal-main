@@ -27,15 +27,14 @@ export default function Navbar() {
               <button
                 className="btn btn-outline-light btn-sm rounded-pill px-4"
                 onClick={async () => {
-                  const email = localStorage.getItem('userEmail');
-                  if (email) {
-                    try {
-                      await axios.post('http://localhost:8080/api/auth/logout', { email });
-                    } catch (error) {
-                      console.error('Logout failed', error);
-                    }
-                    localStorage.removeItem('userEmail');
+                  try {
+                    await axios.post('http://localhost:8080/signout', {}, {
+                      withCredentials: true
+                    });
+                  } catch (error) {
+                    console.error('Logout failed', error);
                   }
+                  localStorage.clear();
                   window.location.href = '/';
                 }}
               >

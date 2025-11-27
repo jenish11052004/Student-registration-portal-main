@@ -15,7 +15,7 @@ export default function ViewUser() {
     const loadStudent = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get<Student>(`http://localhost:8080/api/students/${id}`);
+        const { data } = await axios.get<Student>(`http://localhost:8080/api/students/${id}`, { withCredentials: true });
         setStudent(data);
         setError(null);
       } catch (err) {

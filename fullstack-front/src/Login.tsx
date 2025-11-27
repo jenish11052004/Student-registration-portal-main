@@ -1,42 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
-import loginImage from './assests/images/iiitb.jpeg'; // Replace with your image path
-
-import { useGoogleLogin } from '@react-oauth/google';
-
-import axios from 'axios';
+import loginImage from './assests/images/iiitb.jpeg';
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
-  const login = useGoogleLogin({
-    flow: 'auth-code',
-    onSuccess: async (codeResponse) => {
-      try {
-        // Send authorization code to backend for exchange
-        const response = await axios.post('http://localhost:8080/api/auth/google', {
-          code: codeResponse.code
-        });
+  useEffect(() => {
+    // Check for error in URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
 
-        if (response.status === 200) {
-          localStorage.setItem('userEmail', (response.data as any).email);
-          window.location.href = '/home';
-        }
-      } catch (error: any) {
-        console.error('Login failed', error);
-        if (error.response && error.response.status === 401) {
-          setErrorMessage('Invalid email id');
-        } else if (error.response && error.response.status === 409) {
-          setErrorMessage(error.response.data.message);
-        } else {
-          setErrorMessage('Login failed. Please try again.');
-        }
-      }
-    },
-    onError: () => {
-      setErrorMessage('Google Login Failed');
+    if (error === 'unauthorized') {
+      setErrorMessage('Invalid email id. Only authorized users can login.');
+    } else if (error === 'already_logged_in') {
+      setErrorMessage('User is already logged in from another session.');
+    } else if (error === 'login_failed') {
+      setErrorMessage('Login failed. Please try again.');
     }
-  });
+  }, []);
+
+  const handleLogin = () => {
+    // Redirect to backend OAuth login endpoint
+    window.location.href = 'http://localhost:8080/login';
+  };
 
   return (
     <div className="login-container">
@@ -47,7 +33,7 @@ const Login = () => {
         <div className="login-body">
           <img src={loginImage} alt="Login" className="login-image" />
           <div className="google-login-wrapper">
-            <button onClick={() => login()} className="google-btn">
+            <button onClick={handleLogin} className="google-btn">
               <span className="google-icon-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />

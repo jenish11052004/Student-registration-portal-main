@@ -34,7 +34,7 @@ export default function AddUser() {
     const fetchDomains = async () => {
       try {
         console.log('Fetching domains from http://localhost:8080/api/domains');
-        const { data } = await axios.get<Domain[]>('http://localhost:8080/api/domains');
+        const { data } = await axios.get<Domain[]>('http://localhost:8080/api/domains', { withCredentials: true });
         console.log('Domains fetched successfully:', data);
         setDomains(data);
       } catch (error: any) {
@@ -161,7 +161,7 @@ export default function AddUser() {
 
     try {
       setSubmitting(true);
-      await axios.post('http://localhost:8080/api/students', payload);
+      await axios.post('http://localhost:8080/api/students', payload, { withCredentials: true });
       navigate('/home');
     } catch (error: any) {
       console.error('Failed to register student', error);
