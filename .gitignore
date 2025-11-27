@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Fullstack Backend ###
 /fullstack_backend/src/main/resources/application.properties

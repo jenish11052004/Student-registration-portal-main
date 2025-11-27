@@ -271,6 +271,7 @@ export default function AddUser() {
                     </option>
                   ))}
                 </select>
+                <small className="text-muted">Domain/Program cannot be changed after registration.</small>
               </div>
               <div className="mb-3">
                 <label htmlFor="graduationYear" className="form-label fw-bold small text-secondary">Graduation Year <span className="text-danger">*</span></label>

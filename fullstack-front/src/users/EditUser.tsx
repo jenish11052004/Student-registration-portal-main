@@ -115,10 +115,7 @@ export default function EditUser() {
       alert('Name and email are required.');
       return;
     }
-    if (!student.domainId) {
-      alert('Please select a domain.');
-      return;
-    }
+    // Domain is read-only in edit mode, so we don't need to validate it
     if (!student.graduationYear) {
       alert('Please select a graduation year.');
       return;
@@ -130,7 +127,7 @@ export default function EditUser() {
       lastName: student.lastName.trim(),
       email: student.email.trim(),
       cgpa: Number(student.cgpa),
-      domainId: Number(student.domainId),
+      domainId: Number(student.domainId), // Required by backend even though it's read-only in UI
       totalCredits: Number(student.totalCredits),
       graduationYear: Number(student.graduationYear),
       specialisationId: student.specialisationId ? Number(student.specialisationId) : null,
@@ -264,13 +261,14 @@ export default function EditUser() {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="domainId" className="form-label fw-bold small text-secondary">Domain / Program <span className="text-danger">*</span></label>
+                  <label htmlFor="domainId" className="form-label fw-bold small text-secondary">Domain / Program</label>
                   <select
                     className="form-select form-control-modern"
                     name="domainId"
                     value={student.domainId}
                     onChange={onInputChange}
-                    required
+                    disabled
+                    style={{ backgroundColor: '#f0f0f0', cursor: 'not-allowed' }}
                   >
                     <option value="">Select Domain</option>
                     {domains.map((domain) => (
