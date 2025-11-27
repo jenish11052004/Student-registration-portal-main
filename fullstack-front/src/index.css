@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Global Utilities */
+.card-modern {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #6dabe4 0%, #568fcb 100%);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+.form-control-modern {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control-modern:focus {
+  border-color: #6dabe4;
+  box-shadow: 0 0 0 3px rgba(109, 171, 228, 0.2);
+  outline: none;
+}
+
+.table-modern thead th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e2e8f0;
+  color: #4a5568;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.table-modern tbody tr {
+  transition: background-color 0.1s ease;
+}
+
+.table-modern tbody tr:hover {
+  background-color: #f8f9fa;
+}

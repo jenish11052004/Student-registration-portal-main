@@ -1,0 +1,55 @@
+.img-fluid {
+    width: 50%;
+    margin-left: 30px;
+}
+
+body {
+    background-image: url('../assests/images/background_img.png');
+    background-size: cover;
+    /* Adjusts the image's width and height to cover the entire element */
+    background-repeat: no-repeat;
+    /* Prevents the image from repeating */
+    /* Other styles */
+}
+
+.pink {
+    background-color: rgb(182, 97, 118);
+    /* height: auto; */
+    /* width: 400px; */
+    /* Light pink with 50% opacity */
+    /* Other styles for your container */
+}
+
+.photo-cell {
+    min-width: 120px;
+}
+
+.student-photo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.student-photo-lg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.actions-cell .btn {
+    min-width: 70px;
+}
